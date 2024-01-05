@@ -1,4 +1,4 @@
-#Import libraries
+# Import libraries
 import os
 
 import google.generativeai as genai
@@ -15,20 +15,17 @@ genai.configure(api_key=os.environ["PALM_API_KEY"])
 
 
 for m in genai.list_models():
-  if 'generateContent' in m.supported_generation_methods:
-    print(m.name)
+    if "generateContent" in m.supported_generation_methods:
+        print(m.name)
 
 
-
-image = PIL.Image.open('WIN_20240104_18_20_40_Pro.jpg') 
-vision_model = genai.GenerativeModel('gemini-pro-vision')
-
+image = PIL.Image.open("Screenshot 2024-01-05 120426.png")
+vision_model = genai.GenerativeModel("gemini-pro-vision")
 
 
-
-
-
-response = vision_model.generate_content(["What is this ID card ? and what name and address in this id ?",image])
+response = vision_model.generate_content(
+    ["What is this ID card ? and what name and address in this id ?", image]
+)
 
 response.resolve()
 
